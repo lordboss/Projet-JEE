@@ -72,13 +72,12 @@
           </p>
         </fieldset>
       </div>
-                
-                
-                </font>
                 <div class="line submit"><input type="submit" value="Submit" /></div>
  
                 <p>Note: Please make sure your details are correct before submitting form and that all fields marked with * are completed!.</p>
-            </form>
+         </font>    
+	</form>
         </div>
     </body>
 </html>
+<%@include file="BasDePage.jsp" %>
