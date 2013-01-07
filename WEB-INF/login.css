@@ -1,0 +1,100 @@
+@charset "utf-8";
+
+* { margin:0; padding:0; outline:0; }
+
+html {
+  width:100%;
+  background-color:#0e0801;
+	background-image:url(http://www.ogametut.free.fr/galeries/07/trou_noir2.jpg);
+	background-position:top center;
+	background-repeat:no-repeat;
+  font-family:Tahoma, Geneva, sans-serif;
+  font-size:11px;
+  color:#fff;
+}
+
+a {
+	color:#fff;
+	text-decoration:none;
+}
+a:hover { color:#fac831; }
+strong > a { color:#fac831; }
+strong > a:hover { text-decoration:underline; }
+
+fieldset {
+	width:300px;
+	margin:auto;
+  margin-top:300px;
+	padding:7px;
+	background-color:#302f2c;
+	border-radius:3px;
+	border:1px solid #afafaf;
+}
+legend {
+	color:#fac831;
+	font-weight:bold;
+	padding:2px 4px;
+}
+input[type=text], input[type=password] {
+	width:292px;
+	padding:2px 4px;
+  color:#2a2a2a;
+	border:1px solid #fff;
+	border-radius:2px;
+  background-color:#afafaf;
+  margin:3px 0;
+  display:block;
+}
+input[type=text]:hover, input[type=text]:focus,
+input[type=password]:hover, input[type=password]:focus {
+  border:1px solid #fac831;
+  box-shadow:0 0 8px #ebc57c;
+}
+
+.submit-button {
+  display:inline-block;
+  float:right;
+  height:20px;
+  background-color:#E3E3E3;
+  border:1px solid #CCC;
+  border-radius:2px;
+  cursor:pointer;
+  padding:0;
+  margin:-1px -2px 0 3px;
+  color:#3c3c3c;
+}
+.submit-button > .top {
+  height:8px;
+  background-color:#F4F4F4;
+  border-bottom:1px solid #EEE;
+}
+.submit-button > .content {
+  margin-top:-9px;
+  padding:0 10px;
+  line-height:20px;
+  text-align:center;
+}
+.submit-button:hover {
+  background-color:#F4F4F4;
+  border-color:#888;
+  box-shadow:0 0 8px #ebc57c;
+}
+.submit-button:hover > .top { background-color:#E3E3E3; }
+
+nav {
+  width:300px;
+  margin:auto;
+  margin-top:3px;
+  display:block;
+  text-align:right;
+}
+nav li, nav a { display:inline-block; }
+header nav ul { margin:0 5px; }
+nav li:before {
+	content:"|";
+	margin:0 5px;
+}
+nav li:first-child:before {
+	content:"";
+	margin:0;
+}
