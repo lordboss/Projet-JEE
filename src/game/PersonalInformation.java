@@ -1,4 +1,4 @@
-package browsergame;
+package game;
 
 import javax.persistence.*;
 
@@ -10,6 +10,8 @@ public class PersonalInformation {
 	private String firstname;
 	private String country;
 	private String email;
+	
+	public PersonalInformation() {};
 	
 	public PersonalInformation(String surname, String firstname, String country, String email) {
 		this.surname = surname;

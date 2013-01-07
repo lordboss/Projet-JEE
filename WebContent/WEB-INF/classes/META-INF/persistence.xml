@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<persistence version="1.0">
+	<persistence-unit name="jpa" transaction-type="resource_local">
+		<!-- connexion JDBC -->
+		<provider>org.hibernate.ejb.HibernatePersistence</provider>
+		<non-jta-data-source>java:/postgresDS</non-jta-data-source>
+		<class>game.Ressources</class>
+		<class>game.PersonalInformation</class>
+		<class>game.Building</class>
+		<class>game.Player</class>
+		<class>game.Mail</class>
+		<properties>
+			<property name="hibernate.transaction.factory_class" value="org.hibernate.transaction.JTATransactionFactory"/> 
+			<property name="hibernate.transaction.manager_lookup_class" value="org.hibernate.transaction.JBossTransactionManagerLookup"/>
+			<property name="hibernate.connection.driver_class"
+				value="org.postgresql.Driver" />
+			<property name="hibernate.connection.url"
+				value="jdbc:postgresql://localhost:5432/postgres" />
+			<property name="hibernate.connection.username" value="postgres" />
+			<property name="hibernate.connection.password" value="azerty" />
+			<property name="hibernate.dialect"
+			value="org.hibernate.dialect.PostgreSQLDialect" />
+			<property
+				name="hibernate.hbm2ddl.auto" value="create-drop"/>
+
+		</properties>
+	</persistence-unit>
+</persistence>
