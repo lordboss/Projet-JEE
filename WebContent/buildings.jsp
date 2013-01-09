@@ -8,32 +8,61 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Insert title here</title>
+<link href="css/buildings.css" type="text/css" rel="stylesheet"/>
 </head>
 <body>
 	<% List<Buildings> upb = (List) request.getAttribute("buildings"); %>
 	<form method=post action=TestServlet>
-		<% for(Buildings b : upb) { %>
-			<% %>
-			<p><img src="<%= b.getBuilding().getImagePath()%>" alt="Submit"><br/>
-				Nom <%= b.getBuilding().getName() %><br/>
-				Niveau <%= b.getBuilding().getLevel() %><br/>
-				Commentaires <%= b.getBuilding().getComments()%><br/>
-				<% if (b.getUpgradedBuilding() != null) { %>
-					<% Ressources neededRessources = b.getUpgradedBuilding().getRessourcesNeeded(); %>
-					Nécessaires pour le niveau <%= b.getUpgradedBuilding().getLevel() %><br/>
-					Argent <%= neededRessources.getArgent() %><br/>
-					Or <%= neededRessources.getGold() %><br/>
-					Metal <%= neededRessources.getMetal() %><br/>
-					Cuivre <%= neededRessources.getCuivre() %><br/>
-					<input type="submit" name="développer" value="Développer">
-					<input type="hidden" name="buildingToUpgrade" value="<%=b.getBuilding().getId() %>">
-				<% } else { %>
-					Ce bâtiment a été amélioré au maximum.
+	  <div id="wrapper">
+		<header>
+		 <h1>Jeu de stratégie</h1>
+		  <nav>
+		   <ul>
+			<li><a href="">Accueil</a></li>
+			<li><a href="">Bâtiments</a></li>
+			<li><a href="">Mails</a></li>
+			<li><a href="">Classement</a></li>
+	       </ul>
+	      </nav>
+	     </header>
+	     <section class="buildings">
+			<table>
+				<% for(Buildings b : upb) { %>
+				 <article>
+					<tr>
+						<td class="building"><img src="<%= b.getBuilding().getImagePath() %>" alt="Submit" width="200" height="200"></td>
+						<td class="comments">
+							<ul>
+								<li>Niveau : <%= b.getBuilding().getLevel() %></li>
+								<li><%= b.getBuilding().getComments() %></li>
+								<% if (b.getUpgradedBuilding() == null) { %>
+									Ce bâtiment a été amélioré au maximum.
+								<% } else { %>
+								<li>Ressources nécessaires pour le niveau <%= b.getUpgradedBuilding().getLevel() %> : 
+									<ul>
+										<li>Argent : <%= b.getUpgradedBuilding().getRessourcesNeeded().getArgent() %></li>
+										<li>Or : <%= b.getUpgradedBuilding().getRessourcesNeeded().getGold() %></li>
+										<li>Cuivre : <%= b.getUpgradedBuilding().getRessourcesNeeded().getCuivre() %></li>
+										<li>Metal : <%= b.getUpgradedBuilding().getRessourcesNeeded().getMetal() %></li>
+									</ul>
+								</li>
+								<% } %>
+							</ul>
+						</td>
+						<% if (b.getUpgradedBuilding() == null) { %>
+						<td><input type="submit" name="develop" value="Développer" disabled>
+						<% } else { %>
+						<td><input type="hidden" name="buildingToUpgrade" value="<%= b.getBuilding().getId() %>">
+							<input type="submit" name="develop" value="Développer" ></td>
+						<% } %>
+					</tr>
+				 </article>
 				<% } %>
-			</p>	
-		<%} %>
+			</table>
+		</section>
+		</div>
 		<input type="hidden" name="action" value="listbuildings">
 	</form>
-	<p><a href="menu.html">Menu</a></p>
+	
 </body>
 </html>
