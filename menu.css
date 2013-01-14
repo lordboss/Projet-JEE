@@ -1,0 +1,37 @@
+
+    body { padding-left: 11em;font-family: Georgia, "Times New Roman",
+          Times, serif;background-image:url(http://www.ogametut.free.fr/galeries/10/497.jpg);background-repeat: no-repeat;}
+     h1 {font-family: "Georgia", serif ; color: blanchedalmond;text-align: center;} 
+     ul{list-style-type:none;margin:0;padding:0;overflow:hidden;}  
+     li{display:inline;float:left;}
+  .menu:link, .menu:visited{color: steelblue ;font-weight: bold;text-align: center;padding: 4px;text-decoration: none;text-transform: uppercase;display:block;width:300px;background-color: cornflowerblue;}
+  .menu:hover,.menu:active{background-color: lightseagreen;}
+  
+div.img
+  {
+  margin:1px;
+  border:1px solid black;
+  height:auto;
+  width:auto;
+  float:left;
+  text-align:center;
+  }
+div.img img
+  {
+  display:inline;
+  margin:1px;
+  border:1px black;
+  }
+div.img a:hover img
+  {
+  border:1px solid buttontext;
+  }
+div.desc
+  {
+  text-align:center;
+  font-weight:normal;
+  width:300px;
+  margin:2px;
+  }
+  
+ 
