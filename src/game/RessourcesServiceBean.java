@@ -30,11 +30,7 @@ public class RessourcesServiceBean {
 			  public void run() {
 				  List<Player> players = ps.findAllPlayers();
 				  for(Player p : players) {
-						Ressources r = p.getRessources();
-						r.setArgent(r.getArgent()+10);
-						r.setGold(r.getGold()+10);
-						r.setCuivre(r.getCuivre()+10);
-						r.setMetal(r.getMetal()+10);
+						p.getRessources().addResources(new Ressources(10,10,10,10));
 					}
 				  
 				  List<Building> silverMines = bs.findSilverMines();

@@ -14,7 +14,7 @@
 			There is no player.
 		<%} else { 
 			for(Player p : players) { %>
-				<p> <%= p.getNickname() %>, <%= p.getRessources().getArgent() %> <br/>
+				<p> <%= p.getNickname() %>, <%= p.getPersonalInformation().getSurname() %> <br/>
 				<%for(Building b : p.getBuildings()) { %>
 					<%= b.getName() %> <br/>					
 				<%} 

@@ -1,6 +1,9 @@
 package game;
 
 import java.io.IOException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import javax.ejb.EJB;
 import javax.servlet.ServletException;
@@ -32,17 +35,18 @@ public class AccountCreation extends HttpServlet {
 		
 		String accountAction = request.getParameter("accountAction");
 		String password = request.getParameter("password");
-		String id = request.getParameter("id");
+		String username = request.getParameter("username");
 		
 		if (accountAction.equals("signIn")) {
 			
-			Player p = ps.findPlayer(id);
+			Player p = ps.findPlayer(username);
 			
-			if (password == null || id == null || p == null || !(p.getPassword().equals(password))) {
+			if (password == null || username == null || p == null || !(p.getPassword().equals(password))) {
 				this.getServletContext().getRequestDispatcher("/login/errorAuthentification.html").forward(request, response);
 			} else {
-				request.setAttribute(id, "id");
-				this.getServletContext().getRequestDispatcher("/account/account.jsp").forward(request, response);
+				request.getSession().setAttribute("user", p);
+				request.setAttribute(username, "username");
+				this.getServletContext().getRequestDispatcher("/index.jsp").forward(request, response);
 			}
 		}
 		
@@ -51,11 +55,21 @@ public class AccountCreation extends HttpServlet {
 			String country = request.getParameter("country");
 			String surname = request.getParameter("surname");
 			String firstname = request.getParameter("firstname");
+			String date = request.getParameter("birthDate");
+			Date birthDate = null;
 			
-			if (email == null || country == null || surname == null || firstname == null || id == null || password == null) {
+			if (email == null || country == null || surname == null || firstname == null || username == null || password == null) {
 				this.getServletContext().getRequestDispatcher("/login/registration.jsp").forward(request, response);
 			} else {
-				ps.createPlayer(id, password, surname, firstname, email, country);
+				try {
+					birthDate = new SimpleDateFormat("dd-mm-yyyy").parse(date);
+				} catch (ParseException e) {
+					e.printStackTrace();
+				}
+				Player p = ps.createPlayer(username, password, surname, firstname, email, country, birthDate);
+				request.setAttribute(username, "username");
+				request.getSession().setAttribute("user", p);
+				this.getServletContext().getRequestDispatcher("/index.jsp").forward(request, response);
 			}
 		}
 	}

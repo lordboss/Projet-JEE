@@ -13,6 +13,15 @@ public class Mail {
 	private String sender;
 	private String receiver;
 	
+	public Mail() {};
+	
+	public Mail(String sender, String receiver, String subject, String body) {
+		this.sender = sender;
+		this.receiver = receiver;
+		this.object = subject;
+		this.body = body;
+	}
+	
 	public String getReceiver() { return receiver; }
 	public void setReceiver(String receiver) { this.receiver = receiver; }
 	

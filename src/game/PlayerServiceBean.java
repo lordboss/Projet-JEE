@@ -1,20 +1,13 @@
 package game;
 
 import java.util.ArrayList;
-import java.util.Collection;
+import java.util.Date;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
-import javax.annotation.Resource;
 import javax.ejb.*;
 import javax.persistence.*;
-import javax.transaction.HeuristicMixedException;
-import javax.transaction.HeuristicRollbackException;
-import javax.transaction.NotSupportedException;
-import javax.transaction.RollbackException;
-import javax.transaction.SystemException;
-import javax.transaction.UserTransaction;
 
 
 @Stateless
@@ -46,23 +39,20 @@ public class PlayerServiceBean implements PlayerService {
 		return em;
 	}
 	
-	public Player createPlayer(String nickname, String password, String surname, String firstname, String email, String country, int rank) {
+	public Player createPlayer(String nickname, String password, String surname, String firstname, String email, String country, Date birthDate) {
 		Player p = new Player();
 		p.setNickname(nickname);
 		p.setPassword(password);
 		List<Building> buildings = bs.findAllZeroBuildings();
 		p.setBuildings(buildings);
+		p.setMails(new ArrayList());
 		p.setRessources(new Ressources());
 		p.getRessources().setArgent(100);
 		p.getRessources().setGold(100);
 		p.getRessources().setMetal(100);
 		p.getRessources().setCuivre(100);
-		p.setPersonalInformation(new PersonalInformation());
-		p.getPersonalInformation().setCountry(country);
-		p.getPersonalInformation().setEmail(email);
-		p.getPersonalInformation().setFirstname(firstname);
-		p.getPersonalInformation().setSurname(surname);
-		p.setRank(rank);
+		p.setPersonalInformation(new PersonalInformation(surname, firstname, country, email, birthDate));
+		p.setRank(this.findAllPlayers().size()+1);
 		p.setScore(0);
 		em.getTransaction().begin();
 		em.persist(p);

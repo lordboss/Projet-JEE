@@ -1,5 +1,6 @@
 package game;
 
+import java.text.SimpleDateFormat;
 import java.util.Collection;
 import java.util.List;
 
@@ -8,6 +9,8 @@ import javax.persistence.*;
 
 @Entity
 public class Player {
+	
+	private static final SimpleDateFormat dateFormatter = new SimpleDateFormat("dd-MM-yyyy");
 	
 	@Id private String nickname;
 	private String password;
@@ -21,7 +24,7 @@ public class Player {
 	private int rank;
 	private int score;
 	@OneToMany List<Mail> mails;
-
+	
 	
 	public String getNickname() { return this.nickname; }
 	public void setNickname(String nickname) { this.nickname = nickname; }
@@ -33,7 +36,7 @@ public class Player {
 	public void setBuildings(List<Building> buildings) { this.buildings = buildings; }
 	
 	public PersonalInformation getPersonalInformation() { 
-		return new PersonalInformation(information.getSurname(), information.getFirstname(), information.getCountry(), information.getEmail());
+		return new PersonalInformation(information.getSurname(), information.getFirstname(), information.getCountry(), information.getEmail(), information.getBirthDate());
 	}
 	public void setPersonalInformation(PersonalInformation information) { 
 		this.information = new PersonalInformation();
@@ -60,5 +63,12 @@ public class Player {
 	public List<Mail> getMails() { return this.mails; }
 	public void setMails(List<Mail> mails) { this.mails = mails; }
 	
-
+	@Transient
+	public String getBirthDateFormatted() {
+		return dateFormatter.format(this.getPersonalInformation().getBirthDate());
+	}
+	
+	
+	
+	
 }	

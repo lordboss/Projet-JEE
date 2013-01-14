@@ -40,6 +40,14 @@ public class BuildingsInitializer {
 		silverMine1.setRessourcesNeeded(new Ressources(0,100,0,0));
 		em.persist(silverMine1);
 		
+		Building goldMine = new Building();
+		goldMine.setComments("Vous ne possédez pas ce bâtiment.");
+		goldMine.setName("Mine d'or");
+		goldMine.setLevel(0);
+		goldMine.setImagePath("goldmine.jpg");
+		goldMine.setRessourcesNeeded(new Ressources(0,0,0,0));
+		em.persist(goldMine);
+		
 		em.getTransaction().commit();
 		
 	}

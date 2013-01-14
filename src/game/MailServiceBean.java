@@ -38,17 +38,13 @@ public class MailServiceBean implements MailService {
 	@Override
 	public Mail createMail(String sender, String receiver, String body, String subject) {
 		// TODO Auto-generated method stub
-		Mail mail = new Mail();
-		mail.setBody(body);
-		mail.setObject(subject);
-		mail.setReceiver(receiver);
-		mail.setSender(sender);
+		Mail mail = new Mail(sender, receiver, subject, body);
 		Player s = ps.findPlayer(sender);
 		Player r = ps.findPlayer(receiver);
+		r.getMails().add(0, mail);
+		s.getMails().add(0, mail);
 		em.getTransaction().begin();
 		em.persist(mail);
-		r.getMails().add(0,mail);
-		s.getMails().add(0,mail);
 		em.getTransaction().commit();
 		return mail;
 	}
@@ -73,14 +69,14 @@ public class MailServiceBean implements MailService {
 	@Override
 	public List<Mail> findReceivedMailsOf(String pseudo) {
 		// TODO Auto-generated method stub
-		TypedQuery<Mail> query = em.createQuery("SELECT m FROM Mail m WHERE m.receiver = " + pseudo, Mail.class);
+		TypedQuery<Mail> query = em.createQuery("SELECT m FROM Mail m WHERE m.receiver = :pseudo", Mail.class).setParameter("pseudo", pseudo);
 		return query.getResultList();
 	}
 
 	@Override
 	public List<Mail> findSentMailsOf(String pseudo) {
 		// TODO Auto-generated method stub
-		TypedQuery<Mail> query = em.createQuery("SELECT m FROM Mail m WHERE m.sender = " + pseudo, Mail.class);
+		TypedQuery<Mail> query = em.createQuery("SELECT m FROM Mail m WHERE m.sender = :pseudo", Mail.class).setParameter("pseudo", pseudo);
 		return query.getResultList();
 	}
 

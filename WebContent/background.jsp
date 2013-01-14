@@ -6,6 +6,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Insert title here</title>
+<link href="css/background.css" type="text/css" rel="stylesheet"/>
 </head>
 <body>
 	<% Player p = (Player) session.getAttribute("user"); %>
@@ -27,10 +28,10 @@
 	      
 	      <div class="ressources">
 	      	<ul>
-	      	  <li><img src="metal.gif" alt="Métal"><text class="valeur"><%= p.getRessources().getMetal() %></text></li>
-	      	  <li><img src="gold.jpg" alt="Or"><text class="valeur"><%= p.getRessources().getGold() %></text></li>
-	      	  <li><img src="copper.jpg" alt="Cuivre"><text class="valeur"><%= p.getRessources().getCuivre() %></text></li>
-	      	  <li><img src="silver.jpg " alt="Argent"><text class="valeur"><%= p.getRessources().getArgent() %></text></li>
+	      	  <li><img src="metal.gif" alt="Métal"><div class="valeur"><%= p.getRessources().getMetal() %></div></li>
+	      	  <li><img src="gold.jpg" alt="Or"><div class="valeur"><%= p.getRessources().getGold() %></div></li>
+	      	  <li><img src="copper.jpg" alt="Cuivre"><div class="valeur"><%= p.getRessources().getCuivre() %></div></li>
+	      	  <li><img src="silver.jpg " alt="Argent"><div class="valeur"><%= p.getRessources().getArgent() %></div></li>
 	      	</ul>
 	      </div>
 	     </header>
@@ -38,7 +39,7 @@
 	     <aside>
 	     	<ul>
 	     	  <li><a href="">Vue générale</a></li>
-	     	  <li><a href="">Ressources</a></li>
+	     	  <li><a href="TestServlet?action=listbuildings">Ressources</a></li>
 	     	  <li><a href="">Installations</a></li>
 	     	  <li><a href="">Marchand</a></li>
 	     	  <li><a href="">Recherche</a></li>

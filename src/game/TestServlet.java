@@ -2,6 +2,7 @@ package game;
 
 
 import java.io.IOException;
+import java.util.Date;
 import java.util.List;
 
 import javax.ejb.EJB;
@@ -19,6 +20,7 @@ public class TestServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
     @EJB BuildingService bs;
     @EJB PlayerService ps;
+    @EJB MailService ms;
     
     /**
      * @see HttpServlet#HttpServlet()
@@ -34,6 +36,7 @@ public class TestServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		String action = request.getParameter("action");
+		Player user = (Player) request.getSession().getAttribute("user");
 		
 		if (action.equals("createbuilding")) {
 			String name = request.getParameter("name");
@@ -49,12 +52,12 @@ public class TestServlet extends HttpServlet {
 			String id = request.getParameter("buildingToUpgrade");
 			
 			if (id == null) {
-				List<Buildings> buildings = ps.findBuildingPairsOf("a");
+				List<Buildings> buildings = ps.findBuildingPairsOf(user.getNickname());
 				request.setAttribute("buildings", buildings);
 				this.getServletContext().getRequestDispatcher("/buildings.jsp").forward(request, response);
 			} else {
-				ps.upgradeBuilding("a", Integer.parseInt(id));
-				List<Buildings> buildings = ps.findBuildingPairsOf("a");
+				ps.upgradeBuilding(user.getNickname(), Integer.parseInt(id));
+				List<Buildings> buildings = ps.findBuildingPairsOf(user.getNickname());
 				request.setAttribute("buildings", buildings);
 				this.getServletContext().getRequestDispatcher("/buildings.jsp").forward(request, response);
 			}
@@ -75,9 +78,15 @@ public class TestServlet extends HttpServlet {
 			if (pseudo == null || pass == null || surname == null || firstname == null) {
 				this.getServletContext().getRequestDispatcher("/create-player.html").forward(request, response);
 			} else {
-				ps.createPlayer(pseudo, pass, surname, firstname, " ", " ", 0);
+				ps.createPlayer(pseudo, pass, surname, firstname, " ", " ", new Date());
 				this.getServletContext().getRequestDispatcher("/menu.html").forward(request, response);
 			}
+		}
+		
+		if (action.equals("mails")) {
+			List<Mail> receivedMails = ms.findReceivedMailsOf(user.getNickname());
+			request.setAttribute("receivedMails", receivedMails);
+			this.getServletContext().getRequestDispatcher("/mails.jsp").forward(request, response);
 		}
 	}
 

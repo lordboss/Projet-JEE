@@ -54,4 +54,11 @@ public class Ressources {
 	public void setMetal(int metal) {
 		this.metal = metal;
 	}
+	
+	public void addResources(Ressources resources) {
+		this.metal += resources.getMetal();
+		this.cuivre += resources.getCuivre();
+		this.gold += resources.getGold();
+		this.argent += resources.getArgent();
+	}
 }
