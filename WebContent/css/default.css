@@ -1,0 +1,20 @@
+body {
+	background-image:url(../img/ciel.jpg);
+}
+
+#header {
+	background-color: #00FF00;
+}
+
+#menu {
+	background-color: #0000FF;
+}
+
+#body {
+	background-color: #FF0000;
+	text-align:center;
+}
+
+#content {
+	background-color: #FFFF00;
+}
