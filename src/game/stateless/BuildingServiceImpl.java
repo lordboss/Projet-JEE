@@ -63,7 +63,7 @@ public class BuildingServiceImpl implements BuildingService {
 				em.getTransaction().commit();
 				result = "<div class=\"alert alert-success\"><button type=\"button\" class=\"close\" data-dismiss=\"alert\">&times;</button>Bâtiment construit avec succès.</div>";
 			} else {
-				result = "<div class=\"alert alert-error\"><button type=\"button\" class=\"close\" data-dismiss=\"alert\">&times;</button>Ressources insufisantes pour lancer la construction.</div>";
+				result = "<div class=\"alert alert-error\"><button type=\"button\" class=\"close\" data-dismiss=\"alert\">&times;</button>Ressources insuffisantes pour lancer la construction.</div>";
 			}
 		}
 		em.close();

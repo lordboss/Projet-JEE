@@ -13,7 +13,7 @@
 
 <div class="sylabus">
 <p>Game7 est un jeu multi-joueur par navigateur, dans lequel vous devez développer votre empire.
-Vous pouvez vous <a href="registration">inscrire gratuitement</a> et rejoindre nos … 7 joueurs au dernier recensement.</p>
+Vous pouvez vous <a href="registration">inscrire gratuitement</a> et rejoindre nos 20 joueurs (!) au dernier recensement.</p>
 </div>
 
 	<form method="post" action="connection">

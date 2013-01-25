@@ -3,6 +3,7 @@ package game.stateless;
 import java.util.List;
 
 import game.embedded.Resources;
+import game.entities.Mail;
 import game.entities.Player;
 import game.entities.Transaction;
 
@@ -17,6 +18,7 @@ public class TransactionServiceImpl implements TransactionService {
 	@EJB private EntityService es;
 	@EJB private PlayerService ps;
 	@EJB private ResourceService rs;
+	@EJB private MailService ms;
 	
 	public List<Transaction> getTransactions() {
 		EntityManager em = es.getEntityManager();
@@ -67,6 +69,7 @@ public class TransactionServiceImpl implements TransactionService {
 			em.remove(t);
 			em.getTransaction().commit();
 			em.close();
+			ms.sendMail(approver, t.getProposer().getNickname(), "[notification automatique]", "Je viens d’accepter une de tes offres ;-)");
 			return 0; // échange effectué
 		} else {
 			approver.getResources().addResources(t.getOffer().clone().multiply(-1));
